@@ -1,5 +1,5 @@
 var express = require('express');
-// var cors = require('cors');
+var cors = require('cors');
 var sql = require("mysql");
 
 var app = express();
@@ -15,10 +15,10 @@ var connection = sql.createConnection({
 
 connection.connect(function(err) {
 	if (err) 
-		console.log(err);
+		throw err;
 });
 
-// app.use(cors());
+app.use(cors());
 app.listen(port, function() {
 	console.log(port);
 });
@@ -63,7 +63,7 @@ app.get('/comments', function(req, res) {
 	});
 });
 
-app.get('comments/insert', function(req, res) {
+app.get('/comments/insert', function(req, res) {
 	var {cid, professor, uid, time, comment, diff, interest, useful} = req.query;
 	connection.query(`INSERT INTO Rating VALUES(?, ?, ?, ?, ?, ?, ?, ?)`, 
 	[cid, professor, uid, time, comment, diff, interest, useful],
@@ -77,7 +77,7 @@ app.get('comments/insert', function(req, res) {
 	});
 });
 
-app.get('comments/delete', function(req, res) {
+app.get('/comments/delete', function(req, res) {
 	var {cid, professor, uid} = req.query;
 	connection.query(`DELETE FROM Rating 
 					WHERE cid = ? AND professor = ? and uid = ?`, 
@@ -92,7 +92,7 @@ app.get('comments/delete', function(req, res) {
 	})
 });
 
-app.get('comments/update', function(req, res) {
+app.get('/comments/update', function(req, res) {
 	var {cid, professor, uid, time, comment, diff, interest, useful} = req.query;
 	connection.query(`UPDATE Rating SET time = ?, comment = ?, diff = ?, interest = ?, useful = ?
 					WHERE cid = ? AND professor = ? AND uid = ?`, 
