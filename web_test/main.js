@@ -6,14 +6,16 @@ var app = express();
 var port = process.env.PORT || 5000;
 
 var connection = sql.createConnection({
-	host: '',
-	user: '',
-	password: '',
-	database: ''
+	// mysql://bd2cc55611689c:6fee58e8@us-cdbr-iron-east-03.cleardb.net/heroku_b2e5fb7fc11f642?reconnect=true
+	host: 'us-cdbr-iron-east-03.cleardb.net',
+	user: 'bd2cc55611689c',
+	password: '6fee58e8',
+	database: 'heroku_b2e5fb7fc11f642'
 });
 
 connection.connect(function(err) {
-	if (err) throw err;
+	if (err) 
+		console.log(err);
 });
 
 // app.use(cors());
@@ -79,7 +81,7 @@ app.get('comments/delete', function(req, res) {
 	var {cid, professor, uid} = req.query;
 	connection.query(`DELETE FROM Rating 
 					WHERE cid = ? AND professor = ? and uid = ?`, 
-	[cid, professor, uid]
+	[cid, professor, uid],
 	function(err, result) {
 		if (err) {
 			return res.send(err);
