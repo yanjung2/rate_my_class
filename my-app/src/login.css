@@ -1,0 +1,21 @@
+body {
+  background-color: rgb(52, 52, 52);
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: grayscale;
+}
+
+.ui.container {
+  margin-top: 20rem;
+  max-width: 22rem !important;
+  background-color: inherit;
+}
+.ui.container h1.header {
+  margin-left: 90px
+}
+.ui.container h5.header {
+  margin-left: 50px
+}
+
+.ui.large.form > .field:first-child {
+  margin-bottom: 0;
+}
