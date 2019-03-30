@@ -26,9 +26,10 @@ export default class SearchBar extends Component {
   render() {
     return (
       <React.Fragment>
-      <Input onChange = {this.handleChange}
+      <Input size='large' onChange = {this.handleChange}
              label='CS'
-             iconPosition='left'
+             icon='search'
+             iconPosition='right'
              placeholder='e.g 411'
       />
       {this.state.data.length ? <DataTable arr={this.state.data}/> : <React.Fragment></React.Fragment>}

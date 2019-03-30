@@ -1,0 +1,7 @@
+.ui.modal > .header{
+  background-color: rgba(51, 51, 51, 1) !important;
+  color:white;
+}
+.ui.modal > .content{
+  background-color: rgba(51, 51, 51, 1) !important;
+}

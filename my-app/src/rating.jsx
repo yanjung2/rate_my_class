@@ -4,6 +4,8 @@ import "semantic-ui-css/semantic.min.css";
 
 import { Button, Container, Header, Menu, Segment,Linking, Form,  Rating } from "semantic-ui-react";
 
+import "./rating.css";
+
 class Ratings extends Component {
   constructor(props){
     super(props);
@@ -40,27 +42,35 @@ class Ratings extends Component {
       <Container>
         <Segment inverted vertical textAlign="center">
           <Container className="content">
+          <div>
           <Header inverted as="h2">
             Difficulty
           </Header>
-          <Rating icon='star' defaultRating={3} maxRating={5}
+          <Rating icon='star' defaultRating={1} maxRating={5}
                   onRate = {(e, rating) => this.setState({Difficulty: rating.rating})}/>
           <Header inverted as="h2">
             Interestingness
           </Header>
-          <Rating icon='star' defaultRating={3} maxRating={5}
+          <Rating icon='star' defaultRating={1} maxRating={5}
                   onRate = {(e, rating) => this.setState({Interestingness: rating.rating})}/>
           <Header inverted as="h2">
             Usefulness
           </Header>
-          <Rating icon='star' defaultRating={3} maxRating={5}
+          <Rating icon='star' defaultRating={1} maxRating={5}
                   onRate = {(e, rating) => this.setState({Usefulness: rating.rating})}/>
-          <Form>
-            <p>
-            <Form class="ui form"><textarea placeholder="Comment" rows="3"></textarea></Form>
-            </p>
-            <Form.Button onClick= {this.handleInsert} >Submit</Form.Button>
-          </Form>
+          </div>
+          <br/><br/><br/>
+          <div>
+            <Form>
+              <p>
+              <Form class="ui form"><textarea placeholder="Comment" style={{ width:"500px" }} rows="3"></textarea></Form>
+              </p>
+              <br/><br/>
+              <div>
+                <Form.Button onClick= {this.handleInsert} >Submit</Form.Button>
+              </div>
+            </Form>
+          </div>
           </Container>
 
         </Segment>
