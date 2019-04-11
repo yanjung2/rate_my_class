@@ -16,7 +16,6 @@ export default class DataTable extends Component {
   }
   newModalWindow = (c,p,t) => (
     <Modal trigger={<Button basic inverted color='red'>Rate</Button>}>
-    
       <Modal.Header>Rate the class</Modal.Header>
       <Modal.Content>
         <Ratings cid={c} professor={p} title={t}/>
@@ -56,7 +55,9 @@ export default class DataTable extends Component {
             <Table.HeaderCell>Difficulty</Table.HeaderCell>
             <Table.HeaderCell>Interestingness</Table.HeaderCell>
             <Table.HeaderCell>Usefulness</Table.HeaderCell>
+            <Table.HeaderCell>Reviews</Table.HeaderCell>
             <Table.HeaderCell>Rate</Table.HeaderCell>
+
 
           </Table.Row>
         </Table.Header>

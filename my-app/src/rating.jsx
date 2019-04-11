@@ -63,7 +63,7 @@ class Ratings extends Component {
           <div>
             <Form>
               <p>
-              <Form class="ui form"><textarea placeholder="Comment" style={{ width:"500px" }} rows="3"></textarea></Form>
+              <Form class="ui form"><textarea placeholder="Comment" style={{ width:"600px" }} rows="4"></textarea></Form>
               </p>
               <br/><br/>
               <div>

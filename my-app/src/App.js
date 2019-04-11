@@ -48,15 +48,26 @@ class App extends Component {
             </Router>
           </Container>
           <Container className="content">
-
+          <Header inverted as="h1">Rate My Class</Header>
+            <p>
+              Find the CS class rating here and rate for your fav classes!
+            </p>
           <Router>
             <Route path="/" exact component={SearchBar}/>
             <Route path="/Stats" exact component={Stats}/>
 
             <Route path="/Profile" exact component={Profile}/>
           </Router>
-
+            <Segment inverted vertical as="footer">
+              UIUC course explorer <a href="https://courses.illinois.edu/">Course-Explorer</a>,
+              check for CS courses{" "}
+              <a href="https://cs.illinois.edu/academics/courses">
+                CS@UIUC
+              </a>
+            </Segment>
           </Container>
+
+
         </Segment>
       </div>
     );
