@@ -13,24 +13,34 @@ import {
 } from "semantic-ui-react";
 
 import "./App.css";
+import "./login.css"
+import "./signup.jsx"
 
 export default class Login extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      username:'',
+      password:''
+    }
+  }
   render() {
     return (
       <div className="Login">
         <Grid textAlign="center">
-          <Container>
-            <Header inverted as="h1">Account</Header>
+          <Container className="login">
             <Form size="large">
               <Form.Input
                 name="email"
                 placeholder="Email address"
                 type="text"
+                onChange = {(event,newValue) => this.setState({username:newValue})}
               />
               <Form.Input
                 name="password"
                 placeholder="Password"
                 type="password"
+                onChange = {(event,newValue) => this.setState({password:newValue})}
               />
 
               <Button secondary fluid size="large" type="submit">
@@ -38,7 +48,7 @@ export default class Login extends Component {
               </Button>
             </Form>
               <Header inverted as="h5">
-                New to us? Please <a href="#root"> Sign Up</a>
+                New to us? Please <a href="/Signup"> Sign Up</a>
               </Header>
           </Container>
         </Grid>

@@ -42,6 +42,7 @@ class App extends Component {
                   <Menu.Item className="Home" value="Home" href="/">Home</Menu.Item>
                   <Menu.Item className="Stats" value="Stats" href="/Stats">Stats</Menu.Item>
                   <Menu.Item className="Profile" value="Profile" href="/Profile">Profile</Menu.Item>
+                  <Menu.Item className="Login" value="Login" href="/Login">Account</Menu.Item>
 
                   </Menu>
               </div>
@@ -57,6 +58,10 @@ class App extends Component {
             <Route path="/Stats" exact component={Stats}/>
 
             <Route path="/Profile" exact component={Profile}/>
+            <Route path="/Login" exact component={Login}/>
+            <Route path="/Signup" exact component={Signup}/>
+
+
           </Router>
             <Segment inverted vertical as="footer">
               UIUC course explorer <a href="https://courses.illinois.edu/">Course-Explorer</a>,

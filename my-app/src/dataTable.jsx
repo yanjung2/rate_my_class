@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Table } from 'semantic-ui-react'
 import { Button, Modal} from 'semantic-ui-react'
 import Ratings from "./rating"
+import Reviews from "./review"
 
 
 export default class DataTable extends Component {
@@ -14,11 +15,19 @@ export default class DataTable extends Component {
   componentDidUpdate(){
     console.log(this.props.arr);
   }
-  newModalWindow = (c,p,t) => (
+  rateModalWindow = (c,p,t) => (
     <Modal trigger={<Button basic inverted color='red'>Rate</Button>}>
       <Modal.Header>Rate the class</Modal.Header>
       <Modal.Content>
         <Ratings cid={c} professor={p} title={t}/>
+      </Modal.Content>
+    </Modal>
+  )
+  newModalWindow = (c,p,t) => (
+    <Modal trigger={<Button inverted color='brown'>Reviews</Button>}>
+      <Modal.Header>Reviews</Modal.Header>
+      <Modal.Content>
+        <Reviews cid={c} professor={p} title={t}/>
       </Modal.Content>
     </Modal>
   )
@@ -35,6 +44,10 @@ export default class DataTable extends Component {
       <Table.Cell>
         {this.newModalWindow(obj.cid, obj.professor, obj.title)}
       </Table.Cell>
+      <Table.Cell>
+        {this.rateModalWindow(obj.cid, obj.professor, obj.title)}
+      </Table.Cell>
+
 
     </Table.Row>
   )

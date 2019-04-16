@@ -19,8 +19,8 @@ export default class Signup extends Component {
     return (
       <div className="Signup">
         <Grid textAlign="center">
-          <Container>
-            <Header inverted as="h1">Create your account</Header>
+          <Container className="login">
+            <Header inverted as="h2">Create your account</Header>
             <Form size="large">
               <Form.Input
                 name="email"
@@ -37,6 +37,9 @@ export default class Signup extends Component {
                 Sign up
               </Button>
             </Form>
+            <Header inverted as="h5">
+              Already have an account? Please<a href="/Login"> Login </a>
+            </Header>
           </Container>
         </Grid>
       </div>

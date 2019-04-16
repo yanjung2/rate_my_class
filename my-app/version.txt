@@ -1,0 +1,8 @@
+v2.1
+updated front page layout:
+    adjusted the headers' paddings.
+    added a footer.
+    adjusted the container width for more table columns.
+implemented the reviews button for dataTable
+implemented the reviews modal window(stage 1);
+updated the rating alert statement

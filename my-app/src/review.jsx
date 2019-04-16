@@ -4,9 +4,9 @@ import "semantic-ui-css/semantic.min.css";
 
 import { Button, Container, Header, Menu, Segment,Linking, Form,  Rating } from "semantic-ui-react";
 
-import "./rating.css";
+import "./review.css";
 
-class Ratings extends Component {
+class Reviews extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -40,37 +40,10 @@ class Ratings extends Component {
   render() {
     return (
       <Container>
+
         <Segment inverted vertical textAlign="center">
-          <Container className="content">
-          <div>
-          <Header inverted as="h2">
-            Difficulty
-          </Header>
-          <Rating icon='star' defaultRating={1} maxRating={5}
-                  onRate = {(e, rating) => this.setState({Difficulty: rating.rating})}/>
-          <Header inverted as="h2">
-            Interestingness
-          </Header>
-          <Rating icon='star' defaultRating={1} maxRating={5}
-                  onRate = {(e, rating) => this.setState({Interestingness: rating.rating})}/>
-          <Header inverted as="h2">
-            Usefulness
-          </Header>
-          <Rating icon='star' defaultRating={1} maxRating={5}
-                  onRate = {(e, rating) => this.setState({Usefulness: rating.rating})}/>
-          </div>
-          <br/><br/><br/>
-          <div>
-            <Form>
-              <p>
-              <Form class="ui form"><textarea placeholder="Comment" style={{ width:"600px" }} rows="4"></textarea></Form>
-              </p>
-              <br/><br/>
-              <div>
-                <Form.Button onClick= {this.handleInsert} >Submit</Form.Button>
-              </div>
-            </Form>
-          </div>
+          <Container className="cont">
+          
           </Container>
 
         </Segment>
@@ -79,4 +52,4 @@ class Ratings extends Component {
   }
 }
 
-export default Ratings;
+export default Reviews;
