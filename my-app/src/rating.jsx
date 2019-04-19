@@ -12,15 +12,22 @@ class Ratings extends Component {
     this.state = {
       Interestingness : 0,
       Difficulty : 0,
-      Usefulness : 0
+      Usefulness : 0,
+      comment: '',
+      time: ''
     }
     this.getInsert = this.getInsert.bind(this);
   }
 
+  time
+
   handleInsert = (e) => {
-    this.getInsert(this.props.cid, this.props.professor, this.props.title, 'zhesong2', '2019-03-30 05:34:07', 'fff',
+    this.getInsert(this.props.cid, this.props.professor, this.props.title, 'zhesong2', this.state.time, this.state.comment,
     this.state.Difficulty, this.state.Interestingness, this.state.Usefulness);
   }
+
+
+
 
   getInsert = (cid, professor, title, uid, time, comment, diff, interest, useful) => {
     if(diff == 0){diff = 1}
@@ -63,7 +70,8 @@ class Ratings extends Component {
           <div>
             <Form>
               <p>
-              <Form class="ui form"><textarea placeholder="Comment" style={{ width:"600px" }} rows="4"></textarea></Form>
+              <Form class="ui form"><textarea placeholder="Comment" style={{ width:"600px" }} onChange = {(e)=>{ var today = new Date(); var d = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(); this.setState({comment:e.target.value, time:d})}} rows="4"></textarea></Form>
+
               </p>
               <br/><br/>
               <div>

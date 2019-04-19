@@ -60,9 +60,8 @@ class App extends Component {
             <Route path="/Profile" exact component={Profile}/>
             <Route path="/Login" exact component={Login}/>
             <Route path="/Signup" exact component={Signup}/>
-
-
           </Router>
+          
             <Segment inverted vertical as="footer">
               UIUC course explorer <a href="https://courses.illinois.edu/">Course-Explorer</a>,
               check for CS courses{" "}

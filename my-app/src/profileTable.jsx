@@ -31,12 +31,12 @@ export default class ProfileTable extends Component {
     console.log('http://localhost:5000/comments/delete?cid=' + c + '&professor=' + p + '&title=`' + t + '`&uid=zhesong2')
     fetch('http://localhost:5000/comments/delete?cid=' + c + '&professor=' + p + '&title=' + t + '&uid=zhesong2')
     .then(res => res.json)
-    .then(res => alert("Deleted"))
+    .then(res => alert("The rating has been deleted"))
     .then(res => this.getStat)
     .then(res => window.location.reload())
     .catch(err => console.log(err))
   }
-  newModalWindow = (c,p,t) => (
+  rateModalWindow = (c,p,t) => (
     <Modal trigger={<Button>Edit</Button>}>
       <Modal.Header>
       <Grid columns={2} divided>
@@ -63,7 +63,7 @@ export default class ProfileTable extends Component {
       <Table.Cell>{obj.interst}</Table.Cell>
       <Table.Cell>{obj.useful}</Table.Cell>
       <Table.Cell>
-        {this.newModalWindow(obj.cid, obj.professor, obj.title)}
+        {this.rateModalWindow(obj.cid, obj.professor, obj.title)}
       </Table.Cell>
 
     </Table.Row>

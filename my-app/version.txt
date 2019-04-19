@@ -6,3 +6,5 @@ updated front page layout:
 implemented the reviews button for dataTable
 implemented the reviews modal window(stage 1);
 updated the rating alert statement
+v2.2
+implemented comments function;

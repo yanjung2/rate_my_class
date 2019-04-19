@@ -33,6 +33,8 @@ export default class SearchBar extends Component {
              placeholder='e.g 411'
       />
       {this.state.data.length ? <DataTable arr={this.state.data}/> : <React.Fragment></React.Fragment>}
+      <br/>
+      <br/>
       </React.Fragment>
     );
   }
