@@ -19,7 +19,6 @@ class Ratings extends Component {
     this.getInsert = this.getInsert.bind(this);
   }
 
-  time
 
   handleInsert = (e) => {
     this.getInsert(this.props.cid, this.props.professor, this.props.title, 'zhesong2', this.state.time, this.state.comment,

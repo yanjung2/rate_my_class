@@ -13,7 +13,6 @@ import SearchBar from "./search"
 import Login from "./login"
 import Ratings from "./rating"
 import Signup from "./signup"
-import Navbar from "./navbar"
 import DataTable from "./dataTable"
 import Stats from "./stats"
 import Profile from "./profile"
@@ -61,10 +60,10 @@ class App extends Component {
             <Route path="/Login" exact component={Login}/>
             <Route path="/Signup" exact component={Signup}/>
           </Router>
-          
+
             <Segment inverted vertical as="footer">
-              UIUC course explorer <a href="https://courses.illinois.edu/">Course-Explorer</a>,
-              check for CS courses{" "}
+              University of Illinois <a href="https://courses.illinois.edu/">Course-Explorer</a>.
+              Check for CS courses{" "}
               <a href="https://cs.illinois.edu/academics/courses">
                 CS@UIUC
               </a>

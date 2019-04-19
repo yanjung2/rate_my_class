@@ -35,3 +35,53 @@
 .center {
   padding: inherit;
 }
+
+.shape{
+  fill-opacity: .3;
+  stroke-width: 2
+}
+
+.shape:hover{
+  fill-opacity: .65 ;
+  z-index: 100;
+}
+
+.scale {
+  fill: rgba(51, 51, 51, 1);
+  stroke: #fafafa;
+  stroke-width: 2
+}
+
+.axis {
+  stroke: #fafafa;
+  stroke-width: 2;
+}
+
+.caption{
+  fill: #fafafa;
+  font-weight: 100;
+  text-shadow: 2px 2px 1 #fff
+}
+
+.ui.inverted.segment {
+  background-color: rgb(51, 51, 51);
+
+}
+
+.ui.Comments.segment {
+  background-color: rgb(70,70,70);
+
+}
+
+.ClassContent {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px
+}
+
+.CommentAuthor {
+  color: #fff
+}
+
+.CommentContent {
+  color: #fff
+}
