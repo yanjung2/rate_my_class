@@ -1,7 +1,7 @@
 const initState = {
   ustate:{
     uid: 'zhesong2',
-    iflog: true
+    iflog: false
   }
 }
 

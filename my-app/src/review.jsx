@@ -17,6 +17,7 @@ class Reviews extends Component {
     const difficulty = (this.props.difficulty)/5
     const usefulness = (this.props.usefulness)/5
 
+
     this.state = {
       data : [
         {
@@ -42,37 +43,52 @@ class Reviews extends Component {
           fontSize: 30,
           fontFamily: 'Tw Cen MT'
         }),
+        tag:[],
+        comments:[]
       }
     }
+    this.getComment = this.getComment.bind(this)
+    this.getTag = this.getTag.bind(this)
   }
 
-  componentDidUpdate(){
-    console.log(this.props.abc);
+  componentWillMount(){
+    this.getComment(this.props.cid,this.props.professor,this.props.title);
+    this.getTag(this.props.cid,this.props.professor,this.props.title);
   }
 
+  getComment = (c,p,t) => {
+    console.log('http://localhost:5000/comments?cid=' + c + '&professor=' + p + '&title=' + t)
+    fetch('http://localhost:5000/comments?cid=' + c + '&professor=' + p + '&title=' + t)
+    .then(res => res.json)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
 
-
-
-  getComment = (cid,professor,title) => {
-   fetch('http://localhost:5000/comments?cid=' + cid + '&professor=' + professor + '&title=' + title)
+  getTag = (cid,professor,title) => {
+    fetch('http://localhost:5000/comments/tag_words?cid=' + cid + '&professor=' + professor + '&title=' + title)
     .then(res => res.json())
-    .then(res => {let d = [...res];
-      d.map((obj) => (
-      <MyComment time = { obj.time } author = { obj.uid } content = { obj.comment } />
-    ))})
+    .then(res => this.setState({ tag: res.data }))
+    .then(res => console.log(this.state.data))
     .catch(err => console.log(err))
   }
 
 
-
   render() {
+    const resRender = ({ cid, professor }) => (
+      <span key="name">
+        CS {cid} {professor}
+      </span>
+    );
+    console.log(this.props)
+
+
 
     return (
       <Container>
         <Segment inverted>
           <MyItem data = {this.state} />
         </Segment>
-        {this.getComment(this.props.cid,this.props.professor,this.props.title)}
+        <MyComment author = {'zhesong2'} time = {'2019-04-18'} content = {'it is good'} />
       </Container>
     );
   }
