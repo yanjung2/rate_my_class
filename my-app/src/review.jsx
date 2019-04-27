@@ -44,51 +44,44 @@ class Reviews extends Component {
           fontFamily: 'Tw Cen MT'
         }),
         tag:[],
-        comments:[]
+        comment:[],
+        prediction:[]
       }
     }
     this.getComment = this.getComment.bind(this)
     this.getTag = this.getTag.bind(this)
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.getComment(this.props.cid,this.props.professor,this.props.title);
     this.getTag(this.props.cid,this.props.professor,this.props.title);
   }
 
   getComment = (c,p,t) => {
-    console.log('http://localhost:5000/comments?cid=' + c + '&professor=' + p + '&title=' + t)
     fetch('http://localhost:5000/comments?cid=' + c + '&professor=' + p + '&title=' + t)
-    .then(res => res.json)
-    .then(res => console.log(res))
+    .then(res => res.json())
+    .then(res => this.setState({ comment: res.data, prediction: res.prediction }))
+    
     .catch(err => console.log(err))
   }
 
   getTag = (cid,professor,title) => {
     fetch('http://localhost:5000/comments/tag_words?cid=' + cid + '&professor=' + professor + '&title=' + title)
     .then(res => res.json())
-    .then(res => this.setState({ tag: res.data }))
-    .then(res => console.log(this.state.data))
+    .then(res => this.setState({ tag: res.tags }))
+
     .catch(err => console.log(err))
   }
 
 
   render() {
-    const resRender = ({ cid, professor }) => (
-      <span key="name">
-        CS {cid} {professor}
-      </span>
-    );
-    console.log(this.props)
-
-
-
+    console.log(this.state)
     return (
       <Container>
         <Segment inverted>
           <MyItem data = {this.state} />
         </Segment>
-        <MyComment author = {'zhesong2'} time = {'2019-04-18'} content = {'it is good'} />
+          <MyComment comments = {this.state.comment} />
       </Container>
     );
   }

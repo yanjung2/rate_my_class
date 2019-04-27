@@ -85,3 +85,9 @@
 .CommentContent {
   color: #fff
 }
+
+.prediction_content{
+  color: forestgreen;
+  font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}

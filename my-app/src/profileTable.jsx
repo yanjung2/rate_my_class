@@ -3,9 +3,10 @@ import React, { Component } from "react";
 import { Table, Menu} from 'semantic-ui-react'
 import { Button, Modal, Grid} from 'semantic-ui-react'
 import Rating from "./rating"
+import { connect } from 'react-redux';
 
 
-export default class ProfileTable extends Component {
+class ProfileTable extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -69,12 +70,14 @@ export default class ProfileTable extends Component {
     </Table.Row>
   )
   render() {
+    console.log(this.props)
     const resRender = ({ cid, professor }) => (
       <span key="name">
         CS {cid} {professor}
       </span>
     );
     return (
+
       <Table celled inverted selectable>
         <Table.Header>
           <Table.Row>
@@ -96,3 +99,9 @@ export default class ProfileTable extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return{
+    ustate: state.ustate
+  }
+}
+export default connect(mapStateToProps)(ProfileTable)

@@ -36,7 +36,7 @@ predicted = lr.predict_proba(test_data)
 
 num_pos = 0
 for i in range(len(predicted)):
-    if(predicted[i][0] > 0.647):
+    if(predicted[i][1] > 0.7):
         num_pos += 1
 
 if (num_pos/len(predicted) > 0.67):
