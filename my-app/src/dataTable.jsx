@@ -4,16 +4,17 @@ import { Table } from 'semantic-ui-react'
 import { Button, Modal} from 'semantic-ui-react'
 import Ratings from "./rating"
 import Reviews from "./review"
+import { connect } from 'react-redux';
 
 
-export default class DataTable extends Component {
+class DataTable extends Component {
   constructor(props){
     super(props);
     this.state = {
     }
   }
-  componentDidUpdate(){
-    console.log(this.props.arr);
+  componentDidMount(){
+    console.log(this.props.ustate.uid);
   }
   rateModalWindow = (c,p,t) => (
     <Modal trigger={<Button basic inverted color='red'>Rate</Button>}>
@@ -23,13 +24,17 @@ export default class DataTable extends Component {
       </Modal.Content>
     </Modal>
   )
-  newModalWindow = (c,p,t) => (
+
+  newModalWindow = (c,p,t, g, d, i ,u) => (
     <Modal trigger={<Button inverted color='brown'>Reviews</Button>}>
       <Modal.Header>Reviews</Modal.Header>
       <Modal.Content>
-        <Reviews cid={c} professor={p} title={t}/>
+        <Reviews cid={c} professor={p} title={t} GPA = {g} difficulty = {d} interestingness = {i} usefulness = {u}/>
       </Modal.Content>
     </Modal>
+  )
+  handleEmpty =(
+    <Button inverted color='grey'>Rate</Button>
   )
 
   handleMapClasses = (obj) => (
@@ -42,10 +47,10 @@ export default class DataTable extends Component {
       <Table.Cell>{obj.interst}</Table.Cell>
       <Table.Cell>{obj.useful}</Table.Cell>
       <Table.Cell>
-        {this.newModalWindow(obj.cid, obj.professor, obj.title)}
+        {this.newModalWindow(obj.cid, obj.professor, obj.title, obj.GPA, obj.diff, obj.interst, obj.useful)}
       </Table.Cell>
       <Table.Cell>
-        {this.rateModalWindow(obj.cid, obj.professor, obj.title)}
+        { this.props.ustate.iflog? this.rateModalWindow(obj.cid, obj.professor, obj.title) : this.handleEmpty}
       </Table.Cell>
 
 
@@ -82,3 +87,11 @@ export default class DataTable extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return{
+    ustate: state.ustate
+  }
+}
+
+export default connect(mapStateToProps)(DataTable)

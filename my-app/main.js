@@ -64,18 +64,55 @@ app.get('/stat/search', function(req, res) {
 });
 
 app.get('/comments', function(req, res) {
-	var {cid, professor, title} = req.query;
-	connection.query(`SELECT uid, time, comment, diff, interst, useful
-					FROM Rating
-					WHERE cid = '${cid}' AND professor = '${professor}' AND title = '${title}'`,
-	function(err, result) {
-		if (err) {
-			return res.send(err);
-		}
-		else {
-			return res.json({data : result});
-		}
-	});
+ var {cid, professor, title} = req.query;
+ connection.query(`SELECT uid, time, comment
+     FROM Rating
+     WHERE cid = '${cid}' AND professor = '${professor}' AND title = '${title}'`,
+ function(err, result) {
+  if (err) {
+   return res.send(err);
+  }
+  else {
+   var arr = []
+   for (var i = 0; i < result.length; i++) {
+    arr[i] = result[i].comment;
+   }
+   var json_string = JSON.stringify(arr);
+   var spawn = require("child_process").spawn;
+   var pyProcess = spawn('python',["./bag_of_words.py", json_string]);
+
+   pyProcess.stdout.on('data', function(pred) {
+    return res.json({data : result, "prediction": pred.toString()});
+   });
+  }
+ });
+});
+
+app.get('/comments/tag_words', function(req, res) {
+ var {cid, professor, title} = req.query;
+ connection.query(`SELECT comment
+     FROM Rating
+     WHERE cid = '${cid}' AND professor = '${professor}' AND title = '${title}'`,
+ function(err, result) {
+  if (err) {
+   return res.send(err);
+  }
+  else {
+   var arr = []
+   for (var i = 0; i < result.length; i++) {
+    arr[i] = result[i].comment;
+   }
+   var json_string = JSON.stringify(arr);
+
+   var spawn = require("child_process").spawn;
+   var pyProcess = spawn('python',["./tag_words.py", json_string]);
+
+   pyProcess.stdout.on('data', function(pred) {
+    ss = pred.toString().replace(/(['])/g, "\"");
+    return res.json({"tags": JSON.parse(ss)});
+   });
+  }
+ });
 });
 
 app.get('/comments/insert', function(req, res) {

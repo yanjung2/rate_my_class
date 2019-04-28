@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { Input } from "semantic-ui-react";
 import DataTable from "./dataTable";
+import { connect } from 'react-redux'
 
-export default class Stats extends Component {
+class Stats extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -25,8 +26,16 @@ export default class Stats extends Component {
   render() {
     return (
       <React.Fragment>
-        <DataTable arr={this.state.data}/>
+        <DataTable arr={this.state.data} ustate = {this.props.ustate}/>
       </React.Fragment>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return{
+    ustate: state.ustate
+  }
+}
+
+export default connect(mapStateToProps)(Stats)

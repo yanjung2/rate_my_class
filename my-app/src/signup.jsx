@@ -15,13 +15,30 @@ import {
 import "./App.css";
 
 export default class Signup extends Component {
-  state = {
-    userid: '',
-    password: '',
+  constructor(props){
+    super(props);
+    this.state = {
+      uid: '',
+      password: '',
   }
-  onChange = (key, value) => {
-    this.setState({ [key]: value })
+  this.getSignup = this.getSignup.bind(this);
   }
+
+  handleSignup = (e) => {
+    this.getSignup(this.state.uid, this.state.password);
+  }
+
+  getSignup = (uid,password) => {
+    fetch('http://localhost:5000/signup?uid=' + uid + '&password=' + password)
+    .then(res => res.json())
+    .then(res => {if(res["success"] == 1)
+                      alert("Congrats! You've successfully signed up!")
+                  else
+                      alert("UserID already exists")
+                    })
+    .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <div className="Signup">
@@ -30,19 +47,20 @@ export default class Signup extends Component {
             <Header inverted as="h2">Create your account</Header>
             <Form size="large">
               <Form.Input
-                name="userid"
+                name="uid"
                 placeholder="User Id"
                 type="text"
-                onChange={evt => this.onChange('userid', evt.target.value)}
+                onChange = {(e)=>{this.setState({uid:e.target.value})}}
               />
               <Form.Input
                 name="password"
                 placeholder="Password"
                 type="password"
-                onChange={evt => this.onChange('password', evt.target.value)}
+                onChange = {(e)=>{this.setState({password:e.target.value})}}
+
               />
 
-              <Button secondary fluid size="large" type="submit">
+              <Button secondary fluid size="large"  onClick= {this.handleSignup} type="submit">
                 Sign up
               </Button>
             </Form>
